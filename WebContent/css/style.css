@@ -33,7 +33,7 @@ a {
 a:hover {
   background: green;
 }
-input:focus,
+input,
 textarea:focus {
   -webkit-transition: all ease-in-out 0.15s;
   -moz-transition: all ease-in-out 0.15s;
@@ -181,7 +181,7 @@ textarea:focus {
 }
 .container .up-package,
 .container .public {
-  margin-top: 15px;
+  margin-top: 25px;
   margin-left: 16px;
 }
 .container .up-package a,
@@ -212,11 +212,6 @@ textarea:focus {
   display: inline-block;
   margin-left: 10px;
 }
-.container .up-package .title {
-  position: relative;
-  top: -15px;
-  clear: both;
-}
 .container .upload-box {
   display: inline-block;
   margin-top: 25px;
@@ -227,7 +222,4 @@ textarea:focus {
   border: 1px solid #c2c2c2;
   border-radius: 5px;
   background-color: #fff;
-}
-.container .upload-box button + button {
-  margin-left: 41px;
 }
