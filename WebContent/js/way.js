@@ -48,49 +48,61 @@ $(function(){
         $(this).parents(".boxpac").remove();
     });
 
- $("#load").click(function(){
-     var file = $("#file")[0].files[0]; //文件对象
-     size = file.size; //总大小
-     var shardSize = 10 * 1024 * 1024; //以2MB为一个分片
-     shardCount = Math.ceil(size / shardSize); //总片数
-     var i=0;
-     up(shardCount,i,file);
-     });
-    function up(shardCount,i,file){
-         name = file.name; //文件名
-         size = file.size; //总大小
-         var shardSize = 10 * 1024 * 1024; //以2MB为一个分片
-         var start = i * shardSize,
-         name = file.name, //文件名
-         size = file.size; //总大小
-         end = Math.min(size, start + shardSize);
-         //构造一个表单，FormData是HTML5新增的
-         var form = new FormData();
-         form.append("data", file.slice(start,end)); //slice方法用于切出文件的一部分
-         form.append("name", name);
-         form.append("total", shardCount); //总片数
-         form.append("index", i + 1); //当前是第几片
-         $.ajax({
-             url: "fileupload",
-             type: "POST",
-             data: form,
-             async: true, //异步
-             processData: false, //很重要，告诉jquery不要对form进行处理
-             contentType: false, //很重要，指定为false才能形成正确的Content-Type
-             success: function(){
-                i++;
-                $("#show").text(i+"/"+shardCount);
-                if(i<shardCount)
-                    up(shardCount,i,file)
-             }
-         })
-    }
-    $("#upload").click(function(){
-    	$("#form").submit();
-    });
+
     $(".file").change(function(){
     	$(".file").siblings("div").css({marginLeft:0}).text($(".file").val());
+        var file = $("#file")[0].files[0]; //文件对象
+        size = file.size; //总大小
+        var shardSize = 10 * 1024 * 1024; //以2MB为一个分片
+        shardCount = Math.ceil(size / shardSize); //总片数
+        var i=0;
+
+        up(shardCount,i,file);
     });
+
+    function up(shardCount,i,file){
+        if($("#bar").attr("status")==0){
+            name = file.name; //文件名
+            size = file.size; //总大小
+            var shardSize = 10 * 1024 * 1024; //以2MB为一个分片
+            var start = i * shardSize,
+                name = file.name, //文件名
+                size = file.size; //总大小
+            end = Math.min(size, start + shardSize);
+            //构造一个表单，FormData是HTML5新增的
+            var form = new FormData();
+            form.append("data", file.slice(start,end)); //slice方法用于切出文件的一部分
+            form.append("name", name);
+            form.append("total", shardCount); //总片数
+            form.append("index", i + 1); //当前是第几片
+            $.ajax({
+                url: "fileupload",
+                type: "POST",
+                data: form,
+                async: true, //异步
+                processData: false, //很重要，告诉jquery不要对form进行处理
+                contentType: false, //很重要，指定为false才能形成正确的Content-Type
+                success: function(){
+                    $("#bar").click(function(){
+                        if($("#bar").attr("status")==0){
+                            $("#bar").attr("status","1");
+                            $("#bar").text("开始");
+                        }
+                        else{
+                            $("#bar").attr("status","0");
+                            $("#bar").text("暂停");
+                            up(shardCount,i,file);
+                        }
+                    });
+                    i++;
+                    $("#show").text(i+"/"+shardCount);
+                    if(i<shardCount&&($("#bar").attr("status")==0))
+                        up(shardCount,i,file)
+                }
+            });
+        }
+
+    }
     var option = {
         target:"form",
         beforeSubmit:function(formData,jqForm,options){
@@ -101,8 +113,8 @@ $(function(){
                 }
             }
         }
-    }
+    };
     $("#form").submit(function () {
         $(this).ajaxSubmit(option);
-    })
+    });
 })

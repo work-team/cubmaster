@@ -141,7 +141,7 @@ textarea:focus {
 .container .more-info {
   box-sizing: border-box;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 25px;
   border: 1px solid #2e6da4;
   border-radius: 5px;
 }
@@ -213,13 +213,30 @@ textarea:focus {
   margin-left: 10px;
 }
 .container .upload-box {
-  display: inline-block;
-  margin-top: 25px;
-  margin-left: 489px;
+  float: left;
+  position: relative;
+  left: 50%;
 }
 .container .upload-box button {
   padding: 12px 16px;
+  position: relative;
+  left: -50%;
   border: 1px solid #c2c2c2;
   border-radius: 5px;
   background-color: #fff;
+}
+.container .up-package {
+  clear: both;
+  position: absolute;
+  top: 380px;
+  left: 400px;
+}
+.container .up-package .title {
+  position: relative;
+  bottom: 10px;
+}
+.container .up-package button {
+  position: relative;
+  bottom: 10px;
+  left: 10px;
 }
