@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+</head>
+<body>
+    <div class="container">
+   <form id="form" action="FileUpLoad" enctype="multipart/form-data" method="post">
+        <div class="data-name">
+            <span class="title">数据名称:</span><input type="text" name="datasetName" class="name" id="data_name">
+        </div>
+        <div class="sp-intro">
+            <span class="title">简介:</span><textarea name="description" class="info"></textarea>
+        </div>
+        
+        <div class="select">
+            <span class="title">数据类型:</span>
+            <input type="hidden" class="add" name="datasetType">
+            <div class="choose" style="z-index: 99" tabindex="1">
+                <div class="add" id="data_type">&nbsp;</div>
+                <div class="show">
+                    <div value="0">数值</div>
+                    <div value="1">文本</div>
+                </div>
+                <img src="down.png">
+            </div>
+           
+        </div>
+         
+        <div class="select">
+            <span class="title">算法类型:</span>
+            <div class="choose" style="z-index: 98" tabindex="1">
+                <input type="hidden" class="add" name="associatedTasks">
+                <div class="add" id="alg_type">&nbsp;</div>
+                <div class="show">
+                    <div value="分类算法">分类算法</div>
+                    <div value="聚类算法">聚类算法</div>
+                </div>
+                <img src="down.png">
+            </div>
+        </div>
+        <div class="select">
+            <span class="title">运行平台:</span>
+            <div class="choose" style="z-index: 96;" tabindex="1">
+             <input type="hidden" class="add" name="platform">
+                <div class="add" id="plat">&nbsp;</div>
+                <div class="show">
+                    <div value="java">java</div>
+                    <div value="hadoop">hadoop</div>
+                </div>
+                <img src="down.png">
+            </div>
+        </div>
+        <div class="data-name area" id="area">
+            <span class="title">范围:</span><input type="text" name="area" class="name" placeholder="数据集来源的领域">
+        </div>
+        <div class="more-info" id="more_info">
+            <div class="boxpac">
+                <div class="box first">
+                    <div class="word-name">
+                        <span class="title">字段名称:</span><input type="text"  name="attribute_name" class="name">
+                    </div>
+                    <div class="select another-select">
+                        <span class="title">字段文本:</span>
+                        <div class="choose" tabindex="1">
+                         <input type="hidden" class="add" name="attribute_label">
+                            <div class="add">&nbsp;</div>
+                            <div class="show">
+                                <div value="0">原始字段</div>
+                                <div value="1">结果字段</div>
+                            </div>
+                            <img src="down.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="word-name">
+                        <span class="title">数据库字段:</span><input type="text"  class="name" name="attribute_database_type">
+                    </div>
+                    <div class="select another-select">
+                        <span class="title">字段特征:</span>
+                        <div class="choose choose-spe" tabindex="1">
+                         <input type="hidden" class="add" name="attribute_character">
+                            <div class="add">&nbsp;</div>
+                            <div class="show">
+                                <div value="1">离散</div>
+                                <div value="2">连续</div>
+                                <div value="3">布尔</div>
+                                <div value="4">复杂</div>
+                            </div>
+                            <img src="down.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="word-name">
+                        <span class="title">字段范围:</span><input type="text" name="attribute_range" class="name" placeholder="格式例如1~10">
+                    </div>
+                    <div class="word-name">
+                        <span class="title">字段序列:</span><input type="text" name="attribute_sequence" class="name" placeholder="该字段在文件的列数">
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="word-name">
+                        <span class="title">字段丢失:</span><input name="attribute_missing" type="text" class="name">
+                    </div>
+                    <div class="select another-select">
+                        <span class="title">字段类型:</span>
+                        <div class="choose" tabindex="1">
+                         <input type="hidden" class="add" name="attribute_type">
+                            <div class="add">&nbsp;</div>
+                            <div class="show">
+                                <div value="文本">文本</div>
+                                <div value="数值">数值</div>
+                            </div>
+                            <img src="down.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <button class="addmore" type="button">添加</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+
+        </div>
+   
+        <div class="public">
+            <span class="title">是否公开:</span>
+                <input type="radio" value="0" name="ispublic">&nbsp;公开
+                <input type="radio" value="1" name="ispublic">&nbsp;私密
+        </div>
+        <div class="upload-box">
+            <button class="upload" id="upload">上传</button>
+            <button class="dis-upload">取消上传</button>
+        </div>
+        </form>
+            <div class="up-package">
+            <span class="title">测试数据:</span>
+            <div id="show"></div><button id="load" class="upload" type="button">上传</button>
+            <a href="#"><div>点击上传文件</div><input id="file" name="file" type="file" class="file"> </a>
+            
+        </div>
+    </div>
+</body>
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/way.js"></script>
+</html>

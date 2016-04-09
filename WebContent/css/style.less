@@ -1,0 +1,303 @@
+html,
+body
+{
+    font-size: 14px;
+
+    width: 100%;
+    height: 100%;
+}
+span
+{
+    display: inline-block;
+}
+input,textarea
+{
+    display: inline-block;
+
+    box-sizing: border-box;
+    padding: 1px 15px;
+
+    border: 1px solid #c2c2c2;
+    border-radius: 5px;
+}
+textarea{
+    padding: 15px;
+    resize: none;
+    overflow: scroll-y;
+}
+a
+{
+    position: relative;
+
+    display: inline-block;
+    overflow: hidden;
+
+    box-sizing: border-box;
+    width: 233px;
+    height: 35px;
+
+    border-radius: 5px;
+    background-color: #fff;
+}
+a:hover
+{
+    background: green;
+}
+input,textarea:focus
+{
+    -webkit-transition: all ease-in-out .15s;
+    -moz-transition: all ease-in-out .15s;
+    -ms-transition: all ease-in-out .15s;
+    -o-transition: all ease-in-out .15s;
+    transition: all ease-in-out .15s;
+
+    border: #8bd8ff solid 1px;
+    outline: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),     0 0 2px  #0f7bb1;;
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),     0 0 2px  #0f7bb1;;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),     0 0 2px  #0f7bb1;;
+}
+.container
+{
+    overflow: hidden;
+
+    width: 1174px;
+    height: 706px;
+    margin: 0 auto;
+
+    background-color: #d9edf7;
+    .data-name
+    {
+        margin-top: 45px;
+        margin-left: 16px;
+    }
+    .area input
+    {
+        margin-left: 38px;
+    }
+    .title
+    {
+        font-size: 14px;
+        font-weight: bold;
+    }
+    .name
+    {
+        width: 233px;
+        height: 35px;
+        margin-left: 10px;
+    }
+    .info
+    {
+        width: 518px;
+        height: 146px;
+        margin-left: 38px;
+    }
+    .sp-intro
+    {
+        position: relative;
+
+        margin-top: 15px;
+        margin-left: 16px;
+        .title
+        {
+            position: relative;
+            bottom: 100px;
+        }
+    }
+    .select
+    {
+        position: relative;
+
+        box-sizing: border-box;
+        height: 35px;
+        margin-top: 15px;
+        margin-left: 16px;
+        .title
+        {
+            position: relative;
+            top: 10px;
+        }
+        img
+        {
+            position: absolute;
+            top: 14px;
+            right: 7px;
+
+            width: 11px;
+            height: 7px;
+        }
+    }
+    .choose
+    {
+        line-height: 35px;
+
+        position: absolute;
+        z-index: 99999;
+
+        display: inline-block;
+
+        box-sizing: border-box;
+        width: 233px;
+        height: 35px;
+        margin-left: 10px;
+
+        border: 1px solid #c2c2c2;
+        border-radius: 5px;
+        outline: none;
+        background-color: #fff;
+        option
+        {
+            width: 100%;
+            height: 100%;
+            padding: 0 0;
+        }
+        .add
+        {
+            position: absolute;
+
+            padding: 0 15px;
+        }
+        .show
+        {
+            display: none;
+
+            border-radius: 5px;
+            background-color: #fff;
+            div
+            {
+                box-sizing: border-box;
+                padding: 0 15px;
+
+                border: 1px solid #000;
+                border-radius: 5px;
+            }
+        }
+    }
+    .area
+    {
+        margin-top: 15px;
+    }
+    .more-info
+    {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 15px;
+
+        border: 1px solid #2e6da4;
+        border-radius: 5px;
+        .clear
+        {
+            clear: both;
+        }
+    }
+    .box
+    {
+        position: relative;
+
+        display: inline-block;
+        float: left;
+        .word-name
+        {
+            margin-left: 16px;
+            .name
+            {
+                width: 164px;
+            }
+        }
+        .another-select
+        {
+            margin-top: 0;
+            .choose
+            {
+                width: 164px;
+            }
+            .choose-spe
+            {
+                margin-left: 24px;
+            }
+        }
+        .addmore
+        {
+            width: 54px;
+            height: 34px;
+            margin-left: 15px;
+
+            border: 1px solid #c2c2c2;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+    }
+    .first
+    {
+        margin-left: 10px;
+    }
+    .up-package,
+    .public
+    {
+        margin-top: 15px;
+        margin-left: 16px;
+        a
+        {
+            z-index: 0;
+
+            margin-left: 10px;
+
+            border: 1px solid #c2c2c2;
+            div
+            {
+                line-height: 35px;
+
+                position: absolute;
+                z-index: 0;
+
+                margin-left: 75px;
+
+                text-align: center;
+            }
+        }
+        .file
+        {
+            z-index: 20;
+
+            width: 233px;
+            height: 35px;
+
+            opacity: 0;
+            background-color: #fff;
+
+            filter: alpha(opacity=0);
+        }
+        form
+        {
+            display: inline-block;
+
+            margin-left: 10px;
+        }
+    }
+    .up-package .title
+    {
+        position: relative;
+        top: -15px;
+
+        clear: both;
+    }
+    .upload-box
+    {
+        display: inline-block;
+
+        margin-top: 25px;
+        margin-left: 489px;
+        button
+        {
+            padding: 12px 16px;
+
+            border: 1px solid #c2c2c2;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        button + button
+        {
+            margin-left: 41px;
+        }
+    }
+}

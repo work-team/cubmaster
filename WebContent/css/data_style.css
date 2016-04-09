@@ -1,0 +1,150 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  font-size: 16px;
+  width: 1170px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 99;
+}
+.container .close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+.container .close img {
+  width: 30px;
+  height: 30px;
+}
+.container .box-container {
+  overflow: hidden;
+}
+.container .box {
+  font-weight: bolder;
+  display: inline-block;
+  float: left;
+  margin-left: 20px;
+}
+.container .box h2 {
+  color: #337ab7;
+}
+.container .box div {
+  margin-top: 20px;
+}
+.container .box + .box {
+  margin-top: 42px;
+  margin-left: 350px;
+}
+.container .lie-container {
+  overflow: hidden;
+  margin-top: 20px;
+}
+.container .lie-container span {
+  font-weight: bold;
+  margin-left: 20px;
+}
+.container .lie-container .inf {
+  overflow: hidden;
+}
+.container .lie-container .inf ul {
+  overflow: hidden;
+}
+.container .lie-container .inf li {
+  font-size: 14px;
+  width: 120px;
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+  margin-left: 150px;
+  list-style: none;
+  position: relative;
+}
+.container .lie-container .inf li span {
+  margin-left: 0;
+  position: absolute;
+  right: 0;
+}
+.container .show-container {
+  margin-top: 20px;
+}
+.container .show-container span {
+  font-weight: bold;
+  margin-left: 20px;
+}
+.container .show-container button {
+  width: 85px;
+  height: 38px;
+  margin-left: 50px;
+  border: none;
+  border-radius: 5px;
+  background-color: #c0c0c0;
+}
+.header {
+  width: 100%;
+  background-color: #242424;
+}
+.header .header-center {
+  width: 1170px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 auto;
+}
+.header .header-center li {
+  font-size: 20px;
+  color: #fff;
+  list-style: none;
+  float: left;
+}
+.header .header-center li a {
+  text-decoration: none;
+  color: #9d9d9d;
+}
+.header .header-center li a:hover {
+  color: #fff;
+}
+.header .header-center li + li {
+  font-size: 16px;
+  color: #9d9d9d;
+  float: right;
+  margin-right: 20px;
+}
+.bodyer {
+  width: 100%;
+}
+.bodyer .bodyer-center {
+  width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.bodyer .bodyer-center .file-info {
+  display: inline-block;
+  width: 800px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  border: 1px solid d9edf7;
+  background-color: #d9edf7;
+  border-radius: 15px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+.bodyer .bodyer-center button {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #adafb0;
+  border-radius: 5px;
+  background-color: #c9d2d6;
+  position: relative;
+  left: 20px;
+}
