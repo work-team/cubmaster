@@ -2,34 +2,33 @@
  * Created by tan on 16/3/25.
  */
 $(function(){
-
-    $(".choose").click(function(){
+    $(document).on('click','.choose',function(){
         $(this).find(".show").slideToggle();
         $(this).blur(function(){
             $(this).find(".show").slideUp();
         })
-    })
-    $(".show div").click(function(){
+    });
+    $(document).on('click','.show div',function(){
         var $a = $(this).text();
         var $add = $(this).parents(".select").find(".add");
-        console.log($add.length);
-        //$add.empty();
         $add.append($a);
         $add.val($a);
-    })
-    $(".show div").hover(function(){
+    });
+    $(document).on('mouseover','.show div',function(){
         var $add = $(this).parent().siblings();
         $add.empty();
         $(this).css({
             "color": "#fff",
             "background":"#0f5a9a"
         })
-    },function(){
+    })
+    $(document).on('mouseout','.show div',function(){
         $(this).css({
             "color":"#000",
             "background":"#fff"
         })
-    });
+    })
+
 
     var $addheight = $(".boxpac").height();
     $(".boxpac").find(".addmore").text("删除");
@@ -37,12 +36,23 @@ $(function(){
     var $boxpac1 = $("#more_info").html();
     $(".boxpac").find(".addmore").text("添加");
     $(".boxpac").find(".addmore").removeClass("rem");
+    var zIndex = 99;
+    var lie = 1;
     $(".addmore").click(function(){
-        $("#more_info").css({height:"+="+$addheight});
-        $(".container").css({height:"+="+$addheight});
-        $("#more_info").append($boxpac1);
+        zIndex--;
+        if(lie<3){
+            lie++;
+            $("#more_info").css({height:"+="+$addheight});
+            $(".container").css({height:"+="+$addheight});
+            $("#more_info").append($boxpac1);
+            $("#more_info").find(".boxpac").last().find(".choose").css("z-index",zIndex);
+        }
+        else{
+            alert("你添加的太多啦!")
+        }
     });
     $(document).on('click','.rem',function(){
+        lie--;
         $("#more_info").css({height:"-="+$addheight});
         $(".container").css({height:"-="+$addheight});
         $(this).parents(".boxpac").remove();
@@ -84,7 +94,6 @@ $(function(){
             form.append("total", shardCount); //总片数
             form.append("index", i + 1); //当前是第几片
             i++;
-        	console.log(i)
             $.ajax({
                 url: "fileupload",
                 type: "POST",
@@ -94,9 +103,33 @@ $(function(){
                 contentType: false, //很重要，指定为false才能形成正确的Content-Type
                 success: function(){
                     $("#show").text(i+"/"+shardCount);
-             
                     if(i<shardCount)
-                        up()
+                        up();
+                    else{
+                        $.ajax({
+                            url:"",
+                            type:POST,
+                            dataType:json,
+                            success:function(data){
+                                var data = $.parseJSON(data);
+                                for (var i = 0, j = 0; i <= (data[index].attributes.length * 2 - 2); i = i + 2, j++) {
+                                    if ((data[index].attributes.length - j) > 1) {
+                                        $(".inf").append($inf);
+                                    }
+                                    var $li_first = $(".inf").find("ul").eq(i).find("li");
+                                    var $li_second = $(".inf").find("ul").eq(i + 1).find("li");
+                                    $li_first.eq(0).find("span").text(data[index].attributes[j].attributeName);
+                                    $li_first.eq(1).find("span").text(data[index].attributes[j].attributeLabel);
+                                    $li_first.eq(2).find("span").text(data[index].attributes[j].attributeDatabaseType);
+                                    $li_first.eq(3).find("span").text(data[index].attributes[j].attributeCharacter);
+                                    $li_second.eq(0).find("span").text(data[index].attributes[j].attributeRange);
+                                    $li_second.eq(1).find("span").text(data[index].attributes[j].attributeSequence);
+                                    $li_second.eq(2).find("span").text(data[index].attributes[j].attributeMissing);
+                                    $li_second.eq(3).find("span").text(data[index].attributes[j].attributeType);
+                                }
+                            }
+                        })
+                    }
                 }
             });
         }
