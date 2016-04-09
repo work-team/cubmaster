@@ -21,14 +21,13 @@ $(function(){
             "color": "#fff",
             "background":"#0f5a9a"
         })
-    })
+    });
     $(document).on('mouseout','.show div',function(){
         $(this).css({
             "color":"#000",
             "background":"#fff"
         })
-    })
-
+    });
 
     var $addheight = $(".boxpac").height();
     $(".boxpac").find(".addmore").text("删除");
@@ -48,7 +47,7 @@ $(function(){
             $("#more_info").find(".boxpac").last().find(".choose").css("z-index",zIndex);
         }
         else{
-            alert("你添加的太多啦!")
+            $(".boxpac").last().find(".box").last().append("<div class='sorry'>数据length>3的无法显示</div>")
         }
     });
     $(document).on('click','.rem',function(){
@@ -112,20 +111,14 @@ $(function(){
                             dataType:json,
                             success:function(data){
                                 var data = $.parseJSON(data);
-                                for (var i = 0, j = 0; i <= (data[index].attributes.length * 2 - 2); i = i + 2, j++) {
-                                    if ((data[index].attributes.length - j) > 1) {
-                                        $(".inf").append($inf);
+                                for(var n = 0;n < data.length;n++){
+                                    $(".boxpac").eq(n).find(".box").eq(1).find(".name").val(data[n].type);
+                                    $(".boxpac").eq(n).find(".box").eq(2).find(".name").val(data[n].lossNumber);
+                                    $(".boxpac").eq(n).find(".box").eq(3).find(".name").eq(0).val(data[n].min+"~"+data[n].max);
+                                    $(".boxpac").eq(n).find(".box").eq(3).find(".name").eq(1).val(data[n].sum);
+                                    if(n<=data.length-2){
+                                        $(".addmore").triggerHandler("click");
                                     }
-                                    var $li_first = $(".inf").find("ul").eq(i).find("li");
-                                    var $li_second = $(".inf").find("ul").eq(i + 1).find("li");
-                                    $li_first.eq(0).find("span").text(data[index].attributes[j].attributeName);
-                                    $li_first.eq(1).find("span").text(data[index].attributes[j].attributeLabel);
-                                    $li_first.eq(2).find("span").text(data[index].attributes[j].attributeDatabaseType);
-                                    $li_first.eq(3).find("span").text(data[index].attributes[j].attributeCharacter);
-                                    $li_second.eq(0).find("span").text(data[index].attributes[j].attributeRange);
-                                    $li_second.eq(1).find("span").text(data[index].attributes[j].attributeSequence);
-                                    $li_second.eq(2).find("span").text(data[index].attributes[j].attributeMissing);
-                                    $li_second.eq(3).find("span").text(data[index].attributes[j].attributeType);
                                 }
                             }
                         })
@@ -136,15 +129,24 @@ $(function(){
 
     }
     var option = {
-        target:"form",
+        target:"#form",
+        url:"FileUpLoad",
+        type:"POST",
+        clearForm:true,
+        resetForm:true,
+        timeout:3000,
         beforeSubmit:function(formData,jqForm,options){
             for(var i=0;i<formData.length;i++){
                 if(!formData[i].value){
-                    alert(1);
+                    alert("表单内容不可为空");
                     return false;
                 }
             }
+        },
+        success:function(){
+            alert("成功提交!")
         }
+
     };
     $("#form").submit(function () {
         $(this).ajaxSubmit(option);

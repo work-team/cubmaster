@@ -8,14 +8,13 @@
 </head>
 <body>
     <div class="container">
-   <form id="form" action="FileUpLoad" enctype="multipart/form-data" method="post">
+   <form id="form" enctype="multipart/form-data" method="post">
         <div class="data-name">
             <span class="title">数据名称:</span><input type="text" name="datasetName" class="name" id="data_name">
         </div>
         <div class="sp-intro">
             <span class="title">简介:</span><textarea name="description" class="info"></textarea>
         </div>
-        
         <div class="select">
             <span class="title">数据类型:</span>
             <input type="hidden" class="add" name="datasetType">
@@ -29,7 +28,6 @@
             </div>
            
         </div>
-         
         <div class="select">
             <span class="title">算法类型:</span>
             <div class="choose" style="z-index: 98" tabindex="1">
@@ -95,14 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="box">
-                    <div class="word-name">
-                        <span class="title">字段范围:</span><input type="text" name="attribute_range" class="name" placeholder="格式例如1~10">
-                    </div>
-                    <div class="word-name">
-                        <span class="title">字段序列:</span><input type="text" name="attribute_sequence" class="name" placeholder="该字段在文件的列数">
-                    </div>
-                </div>
+
                 <div class="box">
                     <div class="word-name">
                         <span class="title">字段丢失:</span><input name="attribute_missing" type="text" class="name">
@@ -121,13 +112,21 @@
                     </div>
                 </div>
                 <div class="box">
+                    <div class="word-name">
+                        <span class="title">字段范围:</span><input type="text" name="attribute_range" class="name" placeholder="格式例如1~10">
+                    </div>
+                    <div class="word-name">
+                        <span class="title">字段序列:</span><input type="text" name="attribute_sequence" class="name" placeholder="该字段在文件的列数">
+                    </div>
+                </div>
+                <div class="box">
                     <button class="addmore" type="button">添加</button>
                 </div>
+
                 <div class="clear"></div>
             </div>
 
         </div>
-   
         <div class="public">
             <span class="title">是否公开:</span>
                 <input type="radio" value="0" name="ispublic">&nbsp;公开
@@ -145,5 +144,6 @@
     </div>
 </body>
 <script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.form.min.js"></script>
 <script src="js/way.js"></script>
 </html>

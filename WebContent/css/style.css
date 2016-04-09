@@ -154,6 +154,13 @@ textarea:focus {
   display: inline-block;
   float: left;
 }
+.container .box .sorry {
+  width: 100px;
+  color: #ff0000;
+  position: relative;
+  top: 7px;
+  left: 20px;
+}
 .container .box .word-name {
   margin-left: 16px;
 }
