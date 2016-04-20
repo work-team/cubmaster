@@ -2,19 +2,27 @@
  * Created by tan on 16/3/25.
  */
 $(function(){
-    $(document).on('click','.choose',function(){
-        $(this).find(".show").slideToggle();
+    var $info = 0;
+    $("#form").on('click','.choose',function(event){
+        $(this).find(".show").slideToggle(50);
         $(this).blur(function(){
-            $(this).find(".show").slideUp();
-        })
+            $(this).find(".show").slideUp(50);
+        });
+        $(this).find(".add").empty();
     });
-    $(document).on('click','.show div',function(){
+    $('.show').on('click','div',function(event){
         var $a = $(this).text();
         var $add = $(this).parents(".select").find(".add");
-        $add.append($a);
+        $add.text($a);
         $add.val($a);
+        $(this).parents(".show").slideToggle(50);
+        event.stopPropagation();
+        $("#nebox").siblings().remove();
+        $(".more-info").height($moreheight);
+        $(".container").height($conheight);
+        $info = $a;
     });
-    $(document).on('mouseover','.show div',function(){
+    $('.show').on('mouseover','div',function(){
         var $add = $(this).parent().siblings();
         $add.empty();
         $(this).css({
@@ -22,14 +30,17 @@ $(function(){
             "background":"#0f5a9a"
         })
     });
-    $(document).on('mouseout','.show div',function(){
+    $('.show').on('mouseout','div',function(){
         $(this).css({
             "color":"#000",
             "background":"#fff"
         })
     });
 
+
     var $addheight = $(".boxpac").height();
+    var $conheight = $(".container").height();
+    var $moreheight = $(".more-info").height();
     $(".boxpac").find(".addmore").text("删除");
     $(".boxpac").find(".addmore").addClass("rem");
     var $boxpac1 = $("#more_info").html();
@@ -38,16 +49,37 @@ $(function(){
     var zIndex = 99;
     var lie = 1;
     $(".addmore").click(function(){
-        zIndex--;
-        if(lie<3){
-            lie++;
-            $("#more_info").css({height:"+="+$addheight});
-            $(".container").css({height:"+="+$addheight});
-            $("#more_info").append($boxpac1);
-            $("#more_info").find(".boxpac").last().find(".choose").css("z-index",zIndex);
+        var lielength = null;
+        function Jug(){
+            if($info=="数值"){
+                lielength = 2;
+                Add();
+            }
+            else if($info=="文本"){
+                lielength = 999;
+                Add();
+            }
+            else{
+                alert("请先选择数据类型!");
+                }
         }
-        else{
-            $(".boxpac").last().find(".box").last().append("<div class='sorry'>数据length>3的无法显示</div>")
+        Jug();
+        function Add(){
+            if(lielength!=null){
+                if(lie<lielength){
+                    zIndex--;
+                    lie++;
+                    $("#more_info").css({height:"+="+$addheight});
+                    $(".container").css({height:"+="+$addheight});
+                    $("#more_info").append($boxpac1);
+                    $("#more_info").find(".boxpac").last().find(".choose").css("z-index",zIndex);
+                }
+                else {
+                    if($("#sorry").length==0){
+                        $(".boxpac").last().find(".box").last().append("<div id='sorry'>数据length>3的无法显示</div>");
+                    }
+                }
+            }
         }
     });
     $(document).on('click','.rem',function(){
@@ -146,7 +178,6 @@ $(function(){
         success:function(){
             alert("成功提交!")
         }
-
     };
     $("#form").submit(function () {
         $(this).ajaxSubmit(option);
